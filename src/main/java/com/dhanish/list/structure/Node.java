@@ -7,7 +7,7 @@ package com.dhanish.list.structure;
 public class Node<E> {
 
     public enum Color{
-        RED,BLACK;
+        RED,BLACK
     }
     private int index;
     private E value;
@@ -15,7 +15,7 @@ public class Node<E> {
     private Node<E> right;
     private Node<E> parent;
     private Color color;
-    private int blackHeight;
+//    private int blackHeight;
 
     public Node(){
         setColor(Color.BLACK);
@@ -74,12 +74,12 @@ public class Node<E> {
         this.index = index;
     }
 
-    public int getBlackHeight() {
-        return blackHeight;
-    }
-
-    public void setBlackHeight(int blackHeight) {
-        this.blackHeight = blackHeight;
-    }
+//    public int getBlackHeight() {
+//        return blackHeight;
+//    }
+//
+//    public void setBlackHeight(int blackHeight) {
+//        this.blackHeight = blackHeight;
+//    }
 
 }

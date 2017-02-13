@@ -1,6 +1,8 @@
 package com.dhanish.list;
 
+import com.dhanish.list.structure.RBIterator;
 import com.dhanish.list.structure.RedBlackTree;
+
 
 import java.util.*;
 
@@ -11,7 +13,7 @@ import java.util.*;
 public class EfficientList<E extends Comparable<E>> implements List<E> {
     private int size = 0;
     private int lastIndex = 0;
-    private RedBlackTree<E> tree;
+    private final RedBlackTree<E> tree;
 
 
     public EfficientList(){
@@ -28,22 +30,41 @@ public class EfficientList<E extends Comparable<E>> implements List<E> {
 
     @Override
     public boolean contains(Object o) {
+        for (E e : this) {
+            if (o.equals(e)) {
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return  new RBIterator<>(tree);
     }
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        Iterator<E> iterator = iterator();
+        Object[] toReturn = new Object[size()];
+        for (int i=0;i<size();i++){
+            toReturn[i] = iterator.next();
+        }
+        return toReturn;
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public <T> T[] toArray(T[] a) {
-        return null;
+        if (a.length < size) {
+            // Make a new array of a's runtime type, but my contents:
+            return (T[]) Arrays.copyOf(toArray(), size, a.getClass());
+        }
+        System.arraycopy(toArray(), 0, a, 0, size);
+        if (a.length > size) {
+            a[size] = null;
+        }
+        return a;
     }
 
 
@@ -58,6 +79,7 @@ public class EfficientList<E extends Comparable<E>> implements List<E> {
 
     @Override
     public boolean remove(Object o) {
+
         return false;
     }
 
@@ -88,7 +110,9 @@ public class EfficientList<E extends Comparable<E>> implements List<E> {
 
     @Override
     public void clear() {
-
+        tree.clear();
+        size = 0;
+        lastIndex = 0;
     }
 
     @Override
@@ -96,7 +120,7 @@ public class EfficientList<E extends Comparable<E>> implements List<E> {
         if (index < 0 || index > lastIndex){
             throw new IndexOutOfBoundsException("index is out of bounds");
         }
-        return tree.get(index);
+        return tree.get(index).getValue();
     }
 
     @Override
@@ -111,11 +135,15 @@ public class EfficientList<E extends Comparable<E>> implements List<E> {
 
     @Override
     public E remove(int index) {
-        return null;
+        E value = tree.delete(index).getValue();
+        size--;
+        lastIndex--;
+        return value;
     }
 
     @Override
     public int indexOf(Object o) {
+
         return 0;
     }
 
