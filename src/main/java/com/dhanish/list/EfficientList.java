@@ -33,7 +33,7 @@ public class EfficientList<E extends Comparable<E>> implements List<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return tree.getIterator();
     }
 
     @Override

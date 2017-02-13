@@ -1,6 +1,8 @@
 package com.dhanish.list.structure;
 
 
+import java.util.Iterator;
+
 /**
  * Self balancing red black tree structure
  * Created by Dhanish on 12 Feb,17.
@@ -155,5 +157,25 @@ public class RedBlackTree<E>  {
             }
         }
         return null;
+    }
+
+    public Iterator<E> getIterator(){
+        return new Iterator<E>() {
+            private Node<E> next = root;
+
+            @Override
+            public boolean hasNext() {
+                return next != null;
+            }
+
+            @Override
+            public E next() {
+                Node<E> r = next;
+
+                while (!hasNext()){
+
+                }
+            }
+        };
     }
 }
