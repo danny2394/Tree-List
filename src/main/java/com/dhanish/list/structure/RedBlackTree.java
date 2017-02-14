@@ -232,10 +232,16 @@ public class RedBlackTree<E> implements com.dhanish.list.structure.interfaces.Re
             y.setColor(toDelete.getColor());
         }
         if (yColor == Node.Color.BLACK){
+            //if color is black then moving around y or removing y could cause violations
+            // of red black property
             deleteFix(x);
         }
         //TODO reduce the indexes
         return toDelete;
+    }
+
+    private void reduceIndexes(Node<E> reduce){
+
     }
 
     private void deleteFix(Node <E> x){
@@ -270,6 +276,7 @@ public class RedBlackTree<E> implements com.dhanish.list.structure.interfaces.Re
                 x = root;
 
             } else {
+                //right left interchanged
                 w = x.getParent().getLeft();
                 if (w.getColor() == Node.Color.RED){
                     //case 1

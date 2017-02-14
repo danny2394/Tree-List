@@ -104,6 +104,15 @@ public class EfficientListTest {
 
     @org.testng.annotations.Test
     public void testRemove() throws Exception {
+        list.add(10);
+        list.add(5);
+        list.add(6);
+        list.add(2);
+        list.add(5);
+        assertThat(list.toArray()).isNotEmpty().hasSize(5);
+        list.remove(3);
+        assertThat(list.get(3)).isEqualTo(5);
+
 
     }
 
