@@ -1,5 +1,6 @@
 package com.dhanish.list;
 
+import com.dhanish.list.structure.Node;
 import com.dhanish.list.structure.RBIterator;
 import com.dhanish.list.structure.RedBlackTree;
 
@@ -15,7 +16,7 @@ public class EfficientList<E extends Comparable<E>> implements List<E> {
     private final RedBlackTree<E> tree;
 
 
-    public EfficientList(){
+    EfficientList(){
         tree = new RedBlackTree<>();
     }
 
@@ -78,8 +79,15 @@ public class EfficientList<E extends Comparable<E>> implements List<E> {
 
     @Override
     public boolean remove(Object o) {
-
-        return false;
+        if (o == null){
+            throw new NullPointerException("Given element is null");
+        }
+        final int index = tree.getIndex((E)o);
+        if (index == -1){
+            throw new NullPointerException("Element not found");
+        }
+        Node<E> deleted = tree.delete(index);
+        return !tree.isNil(deleted);
     }
 
     @Override
@@ -124,16 +132,36 @@ public class EfficientList<E extends Comparable<E>> implements List<E> {
 
     @Override
     public E set(int index, E element) {
-        return null;
+        if (element == null){
+            throw new NullPointerException("Given element is null");
+        }
+        if (index < 0 || index > lastIndex){
+            throw new IndexOutOfBoundsException("index is out of bounds");
+        }
+        return tree.set(index,element);
     }
 
     @Override
     public void add(int index, E element) {
+        if (element == null){
+            throw new NullPointerException("Given element is null");
+        }
 
+        if (index < 0 || index > lastIndex){
+            throw new IndexOutOfBoundsException("index is out of bounds");
+        }
+        Node<E> node = tree.get(index);
+        tree.adjustIndexForAdd(node);
+        tree.insert(index,element);
+        lastIndex++;
+        size++;
     }
 
     @Override
     public E remove(int index) {
+        if (index < 0 || index > lastIndex){
+            throw new IndexOutOfBoundsException("index is out of bounds");
+        }
         E value = tree.delete(index).getValue();
         size--;
         lastIndex--;
@@ -142,13 +170,28 @@ public class EfficientList<E extends Comparable<E>> implements List<E> {
 
     @Override
     public int indexOf(Object o) {
+        if (o == null){
+            throw new NullPointerException("Given element is null");
+        }
+        return tree.getIndex((E) o);
 
-        return 0;
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        return 0;
+        if (o == null){
+            throw new NullPointerException("Given element is null");
+        }
+        Iterator<E> iterator = iterator();
+        int index = -1;
+        int i=0;
+        while (iterator.hasNext()){
+            if (iterator.next().equals(o)){
+                index = i;
+            }
+            i++;
+        }
+        return index;
     }
 
     @Override

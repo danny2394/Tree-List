@@ -17,36 +17,34 @@ public class Node<E> {
     private Color color;
 //    private int blackHeight;
 
-    public Node(){
+    Node(){
         setColor(Color.BLACK);
     }
-    public Node(final int index, final E value){
+    Node(final int index, final E value){
         setIndex(index);
         setValue(value);
         setColor(Color.RED);
     }
 
-    public Node<E> getLeft(){
-        return left;
-    }
+    public Node<E> getLeft(){ return left;}
 
     public Node<E> getRight(){
         return right;
     }
 
-    public void setLeft(final Node<E> left){
+    void setLeft(final Node<E> left){
         this.left = left;
     }
 
-    public void setRight(final Node<E> right){
+    void setRight(final Node<E> right){
         this.right = right;
     }
 
-    public Node<E> getParent(){
+    Node<E> getParent(){
         return  parent;
     }
 
-    public void setParent(final Node<E> parent){
+    void setParent(final Node<E> parent){
         this.parent = parent;
     }
 
@@ -54,7 +52,7 @@ public class Node<E> {
         return color;
     }
 
-    public void setColor(Color color) {
+    void setColor(Color color) {
         this.color = color;
     }
 
@@ -62,7 +60,7 @@ public class Node<E> {
         return value;
     }
 
-    public void setValue(E value) {
+    void setValue(E value) {
         this.value = value;
     }
 

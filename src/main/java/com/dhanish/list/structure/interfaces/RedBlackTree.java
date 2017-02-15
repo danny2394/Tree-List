@@ -14,6 +14,8 @@ public interface RedBlackTree<E> {
     boolean isNil(final Node<E> toCheck);
     Node<E> get(final int index);
     Node<E> delete(final int index);
+    int getIndex(E value);
+    E set(final int index, final E value);
 
 
 }
