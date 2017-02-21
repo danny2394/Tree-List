@@ -135,8 +135,10 @@ class EfficientList<E extends Comparable<E>> implements List<E> {
         }
         final int index = tree.getIndex((E)o);
         if (index == -1){
-            throw new NullPointerException("Element not found");
-        }
+            // element not found
+            // no change in list, thus return false
+            return false;
+            }
         Node<E> deleted = tree.delete(index);
         return !tree.isNil(deleted);
     }
@@ -185,7 +187,7 @@ class EfficientList<E extends Comparable<E>> implements List<E> {
      */
     @Override
     public E get(int index) throws IndexOutOfBoundsException {
-        if (index < 0 || index > lastIndex){
+        if (index < 0 || index >= size()){
             throw new IndexOutOfBoundsException("index is out of bounds");
         }
         return tree.get(index).getValue();
@@ -204,7 +206,7 @@ class EfficientList<E extends Comparable<E>> implements List<E> {
         if (element == null){
             throw new NullPointerException("Given element is null");
         }
-        if (index < 0 || index > lastIndex){
+        if (index < 0 || index >= size()){
             throw new IndexOutOfBoundsException("index is out of bounds");
         }
         return tree.set(index,element);
@@ -224,13 +226,17 @@ class EfficientList<E extends Comparable<E>> implements List<E> {
             throw new NullPointerException("Given element is null");
         }
 
-        if (index < 0 || index > lastIndex){
+        if (index < 0 || index >= size() + 1){
             throw new IndexOutOfBoundsException("index is out of bounds");
         }
+        if (index == lastIndex){
+            add(element);
+        } else {
+            tree.insert(index, element);
+            lastIndex++;
+            size++;
+        }
 
-        tree.insert(index,element);
-        lastIndex++;
-        size++;
     }
 
     /**
@@ -242,7 +248,7 @@ class EfficientList<E extends Comparable<E>> implements List<E> {
      */
     @Override
     public E remove(int index) throws IndexOutOfBoundsException {
-        if (index < 0 || index > lastIndex){
+        if (index < 0 || index >= size()){
             throw new IndexOutOfBoundsException("index is out of bounds");
         }
         E value = tree.delete(index).getValue();
@@ -310,7 +316,7 @@ class EfficientList<E extends Comparable<E>> implements List<E> {
      */
     @Override
     public ListIterator<E> listIterator(int index) throws IndexOutOfBoundsException {
-        if (index < 0 || index > lastIndex){
+        if (index < 0 || index >= size()){
             throw new IndexOutOfBoundsException("index out of bounds");
         }
         Iterator<E> iterator =  iterator();
@@ -331,7 +337,7 @@ class EfficientList<E extends Comparable<E>> implements List<E> {
      */
     @Override
     public List<E> subList(int fromIndex, int toIndex) throws IndexOutOfBoundsException {
-        if (fromIndex < 0 || toIndex > lastIndex) {
+        if (fromIndex < 0 || toIndex >= size()) {
             throw new IndexOutOfBoundsException("index out of bounds");
         }
         List<E> toReturn = new EfficientList<>();

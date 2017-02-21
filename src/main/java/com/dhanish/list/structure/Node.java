@@ -9,7 +9,6 @@ public class Node<E> {
     public enum Color{
         RED,BLACK
     }
-    private int index;
     private E value;
     private Node<E> left;
     private Node<E> right;
@@ -22,14 +21,13 @@ public class Node<E> {
         setColor(Color.BLACK);
     }
     Node(final E value){
-        //setIndex(index);
         setValue(value);
         setColor(Color.RED);
     }
 
-    public Node<E> getLeft(){ return left;}
+    Node<E> getLeft(){ return left;}
 
-    public Node<E> getRight(){
+    Node<E> getRight(){
         return right;
     }
 
@@ -65,27 +63,20 @@ public class Node<E> {
         this.value = value;
     }
 
-//    public int getIndex() {
-//        return index;
-//    }
-//
-//    public void setIndex(int index) {
-//        this.index = index;
-//    }
 
-    public int getRightChildren() {
+    int getRightChildren() {
         return rightChildren;
     }
 
-    public void setRightChildren(int rightChildren) {
+    void setRightChildren(int rightChildren) {
         this.rightChildren = rightChildren;
     }
 
-    public int getLeftChildren() {
+    int getLeftChildren() {
         return leftChildren;
     }
 
-    public void setLeftChildren(int leftChildren) {
+    void setLeftChildren(int leftChildren) {
         this.leftChildren = leftChildren;
     }
 

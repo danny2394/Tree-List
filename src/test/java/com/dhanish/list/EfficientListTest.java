@@ -19,6 +19,18 @@ public class EfficientListTest {
 
 
     @Test
+    public void testClear() throws Exception {
+        list.add(10);
+        list.add(5);
+        list.add(6);
+        list.add(2);
+        list.add(5);
+        list.clear();
+        assertThat(list.toArray()).hasSize(0);
+    }
+
+
+    @Test
     public void testSet() throws Exception {
         list.add(10);
         list.add(5);
@@ -61,7 +73,9 @@ public class EfficientListTest {
         list.add(6);
         list.add(2);
         list.add(5);
-        assertThat(list.get(2)).isEqualTo(6);
+        assertThat(list.get(0)).isEqualTo(10); //going left
+        assertThat(list.get(2)).isEqualTo(6); //going right and left
+        assertThat(list.get(3)).isEqualTo(2); //going right
     }
 
     private EfficientList<Integer> list;
@@ -80,6 +94,8 @@ public class EfficientListTest {
         list.add(2);
         list.add(5);
         assertThat(list.toArray()).isNotEmpty().hasSize(5);
+        list.clear();
+        assertThat(list.size()).isEqualTo(0);
     }
 
     @org.testng.annotations.Test
@@ -159,6 +175,23 @@ public class EfficientListTest {
         list.add(7, 25);
         assertThat(list.get(7)).isEqualTo(25);
 
+        list.clear();
+        for (int i=0;i<4;i++){
+            list.add(i,i);
+        }
+        list.remove(2);
+        assert(list.get(2) == 3);
+
+        try {
+            list.add(9, 10);
+        } catch (IndexOutOfBoundsException ex){
+            assertThat(ex).isInstanceOf(IndexOutOfBoundsException.class);
+        }
+        try {
+            list.add(3, null);
+        } catch (NullPointerException ex){
+            assertThat(ex).isInstanceOf(NullPointerException.class);
+        }
 
     }
 
@@ -179,6 +212,19 @@ public class EfficientListTest {
         assertThat(list.get(3)).isEqualTo(5);
         list.remove((Object) 3); //by value
         assertThat(list.get(7)).isEqualTo(5);
+        list.clear();
+        for (int i=0;i<8;i++){
+            list.add(i);
+        }
+        list.remove(3);
+        assertThat(list.get(3)).isEqualTo(4);
+
+        try {
+            list.remove(9);
+        } catch (IndexOutOfBoundsException ex){
+            assertThat(ex).isInstanceOf(IndexOutOfBoundsException.class);
+        }
+        assertThat(list.remove((Object) 9)).isEqualTo(false);
     }
 
     @org.testng.annotations.Test
