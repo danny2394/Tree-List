@@ -11,6 +11,11 @@ import java.util.NoSuchElementException;
 public class RBIterator<E> implements Iterator{
     private Node<E> next; //storing the next node for the iterator
     private final RedBlackTree<E> tree;
+
+    /**
+     * Constructor
+     * @param tree the tree to which an iterator is required
+     */
     public RBIterator(RedBlackTree<E> tree){
         this.tree = tree;
         next = tree.getRoot();
@@ -24,11 +29,19 @@ public class RBIterator<E> implements Iterator{
         }
     }
 
+    /**
+     * Returns if the iterator has a next element
+     * @return true if there is another element
+     */
     @Override
     public boolean hasNext() {
         return !tree.isNil(next);
     }
 
+    /**
+     * Returns the next element
+     * @return the value at the next element
+     */
     @Override
     public Object next() {
         if(!hasNext()) throw new NoSuchElementException();

@@ -15,13 +15,14 @@ public class Node<E> {
     private Node<E> right;
     private Node<E> parent;
     private Color color;
-//    private int blackHeight;
+    private int leftChildren;
+    private int rightChildren;
 
     Node(){
         setColor(Color.BLACK);
     }
-    Node(final int index, final E value){
-        setIndex(index);
+    Node(final E value){
+        //setIndex(index);
         setValue(value);
         setColor(Color.RED);
     }
@@ -64,20 +65,28 @@ public class Node<E> {
         this.value = value;
     }
 
-    public int getIndex() {
-        return index;
-    }
-
-    public void setIndex(int index) {
-        this.index = index;
-    }
-
-//    public int getBlackHeight() {
-//        return blackHeight;
+//    public int getIndex() {
+//        return index;
 //    }
 //
-//    public void setBlackHeight(int blackHeight) {
-//        this.blackHeight = blackHeight;
+//    public void setIndex(int index) {
+//        this.index = index;
 //    }
+
+    public int getRightChildren() {
+        return rightChildren;
+    }
+
+    public void setRightChildren(int rightChildren) {
+        this.rightChildren = rightChildren;
+    }
+
+    public int getLeftChildren() {
+        return leftChildren;
+    }
+
+    public void setLeftChildren(int leftChildren) {
+        this.leftChildren = leftChildren;
+    }
 
 }
