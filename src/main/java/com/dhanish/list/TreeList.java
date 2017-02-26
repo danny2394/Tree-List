@@ -10,7 +10,7 @@ import java.util.*;
  * Class implementing list with the underlying structure being a self balancing tree
  * Created by Dhanish on 10 Feb,17.
  */
-class EfficientList<E extends Comparable<E>> implements List<E> {
+class TreeList<E extends Comparable<E>> implements List<E> {
     private int size = 0;
     private int lastIndex = 0;
     private final RedBlackTree<E> tree;
@@ -19,7 +19,7 @@ class EfficientList<E extends Comparable<E>> implements List<E> {
     /**
      * Constructor to initialize the list
      */
-    EfficientList(){
+    TreeList(){
         tree = new RedBlackTree<>();
     }
 
@@ -340,7 +340,7 @@ class EfficientList<E extends Comparable<E>> implements List<E> {
         if (fromIndex < 0 || toIndex >= size()) {
             throw new IndexOutOfBoundsException("index out of bounds");
         }
-        List<E> toReturn = new EfficientList<>();
+        List<E> toReturn = new TreeList<>();
 
         for (int k = fromIndex; k<=toIndex; k++){
             toReturn.add(get(k));

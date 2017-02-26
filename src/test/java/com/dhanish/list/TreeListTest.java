@@ -15,7 +15,7 @@ import static org.testng.Assert.assertEquals;
  * Test class to test implementation of set
  * Created by Dhanish on 12 Feb,17.
  */
-public class EfficientListTest {
+public class TreeListTest {
 
 
     @Test
@@ -78,11 +78,11 @@ public class EfficientListTest {
         assertThat(list.get(3)).isEqualTo(2); //going right
     }
 
-    private EfficientList<Integer> list;
+    private TreeList<Integer> list;
 
     @org.testng.annotations.BeforeMethod
     public void setUp() throws Exception {
-        list = new EfficientList<>();
+        list = new TreeList<>();
 
     }
 
@@ -240,7 +240,7 @@ public class EfficientListTest {
         list.add(4);
         list.add(5);
 
-        EfficientList<Integer> newList = (EfficientList<Integer>) list.subList(3,6);
+        TreeList<Integer> newList = (TreeList<Integer>) list.subList(3,6);
 
         assertThat(newList).hasSize(4);
         assertThat(newList.get(0)).isEqualTo(2);
