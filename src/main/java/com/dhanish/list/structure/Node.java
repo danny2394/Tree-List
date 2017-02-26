@@ -63,8 +63,7 @@ public class Node<E> {
         this.value = value;
     }
 
-
-    int getRightChildren() {
+    public int getRightChildren() {
         return rightChildren;
     }
 
