@@ -1,8 +1,8 @@
-package com.dhanish.list;
+package com.list;
 
-import com.dhanish.list.structure.Node;
-import com.dhanish.list.structure.RBIterator;
-import com.dhanish.list.structure.RedBlackTree;
+import com.list.structure.Node;
+import com.list.structure.RBIterator;
+import com.list.structure.RedBlackTree;
 
 import java.util.*;
 

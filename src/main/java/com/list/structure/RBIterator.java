@@ -1,4 +1,4 @@
-package com.dhanish.list.structure;
+package com.list.structure;
 
 
 import java.util.Iterator;

@@ -1,6 +1,6 @@
-package com.dhanish.list.structure.interfaces;
+package com.list.structure.interfaces;
 
-import com.dhanish.list.structure.Node;
+import com.list.structure.Node;
 
 /**
  * The interface for the RedBlackTree

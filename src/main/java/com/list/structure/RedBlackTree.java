@@ -1,4 +1,4 @@
-package com.dhanish.list.structure;
+package com.list.structure;
 
 import java.util.Stack;
 
@@ -13,7 +13,7 @@ import java.util.Stack;
  * Insert and delete operations take O(logN)
  * Created by Dhanish on 12 Feb,17.
  */
-public class RedBlackTree<E> implements com.dhanish.list.structure.interfaces.RedBlackTree<E> {
+public class RedBlackTree<E> implements com.list.structure.interfaces.RedBlackTree<E> {
     private Node<E> root;
     final Node<E> nil = new Node<>(); //nil node for the leafs
 

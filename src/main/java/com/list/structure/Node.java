@@ -1,4 +1,4 @@
-package com.dhanish.list.structure;
+package com.list.structure;
 
 /**
  * Class to handle elements of the tree
