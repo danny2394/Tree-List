@@ -10,7 +10,7 @@ import java.util.*;
  * Class implementing list with the underlying structure being a self balancing tree
  * Created by Dhanish on 10 Feb,17.
  */
-class TreeList<E extends Comparable<E>> implements List<E> {
+public class TreeList<E extends Comparable<E>> implements List<E> {
     private int size = 0;
     private int lastIndex = 0;
     private final RedBlackTree<E> tree;
